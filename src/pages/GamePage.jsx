@@ -90,7 +90,7 @@ export default function GamePage() {
             <div className="ties-info">Seri: <strong>{scores.ties}</strong></div>
             <button className="btn reset" onClick={resetGame}>Ronde Baru</button>
             <button className="btn reset" style={{ background: '#64748b', marginTop: '4px' }} onClick={() => navigate('/')}>
-              ⚙️ Ganti Mode / Keluar
+              Keluar
             </button>
           </div>
         </div>
