@@ -1,184 +1,289 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+:root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%);
+  color: #1e3a8a;
+  font-family: system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
 }
 
-#center {
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+.game-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
 }
 
-#next-steps {
+.game-title {
+  margin: 0;
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: #1e3a8a;
+  text-shadow: 0 4px 12px rgba(255, 255, 255, 0.8);
+}
+
+.game-main {
   display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
+/* Kartu Pemain Claymorphic */
+.player-card {
+  background: rgba(255, 255, 255, 1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 32px;
+  padding: 1.5rem;
   display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 170px;
+  box-shadow: 
+    20px 20px 40px 0px rgba(145, 192, 255, 0.5), 
+    inset -8px -8px 16px 0px rgba(145, 192, 255, 0.6), 
+    inset 0px 11px 28px 0px rgb(255, 255, 255);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
+.player-card.active {
+  background: #3b82f6;
+  transform: translateY(-4px);
+  box-shadow: 
+    25px 25px 50px 0px rgba(59, 130, 246, 0.45), 
+    inset -8px -8px 16px 0px rgba(29, 78, 216, 0.6), 
+    inset 0px 11px 28px 0px rgba(255, 255, 255, 0.5);
 }
 
-.ticks {
-  position: relative;
+/* INPUT NAMA PEMAIN (Dibuat tetap kontras & bisa diketik di semua kondisi) */
+.player-name-input {
+  background: #ffffff;
+  border: none;
+  border-radius: 16px;
+  color: #1e3a8a;
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
   width: 100%;
+  outline: none;
+  box-shadow: 
+    inset -3px -3px 8px 0px rgba(145, 192, 255, 0.4), 
+    inset 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  pointer-events: auto;
+  cursor: text;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
+.player-card.active .player-name-input {
+  background: #ffffff;
+  color: #1e3a8a;
+  box-shadow: inset -2px -2px 6px rgba(145, 192, 255, 0.4), inset 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
+.player-name-input:focus {
+  background: #ffffff;
+  box-shadow: 0 0 0 3px #bfdbfe;
+}
+
+.player-card.active .player-score {
+  color: #dbeafe;
+}
+
+.player-card.active .player-score strong {
+  color: #ffffff;
+}
+
+.player-symbol {
+  font-size: 2.2rem;
+  font-weight: 900;
+}
+
+/* Warna simbol X (Merah) dan O (Hijau) */
+.player-symbol.x {
+  color: #ef4444;
+}
+
+.player-symbol.o {
+  color: #10b981;
+}
+
+.player-card.active .player-symbol {
+  color: #ffffff;
+}
+
+.player-score {
+  font-size: 0.85rem;
+  color: #3b82f6;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.player-score strong {
+  color: #1e3a8a;
+  font-size: 1.05rem;
+}
+
+/* Area Utama Tengah */
+.game-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  background: rgba(255, 255, 255, 1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 32px;
+  padding: 2rem;
+  box-shadow: 
+    35px 35px 68px 0px rgba(145, 192, 255, 0.5), 
+    inset -8px -8px 16px 0px rgba(145, 192, 255, 0.6), 
+    inset 0px 11px 28px 0px rgb(255, 255, 255);
+}
+
+.status {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #1e3a8a;
+  min-height: 1.5rem;
+  text-align: center;
+}
+
+/* Papan Grid 3x3 */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 85px);
+  grid-template-rows: repeat(3, 85px);
+  gap: 12px;
+  background: #dbeafe;
+  padding: 14px;
+  border-radius: 24px;
+  box-shadow: inset 6px 6px 14px rgba(145, 192, 255, 0.8), inset -6px -6px 14px rgba(255, 255, 255, 0.9);
+}
+
+.square {
+  background: #ffffff;
+  border-radius: 16px;
+  font-size: 2.4rem;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  box-shadow: 
+    6px 6px 14px 0px rgba(145, 192, 255, 0.45), 
+    inset -3px -3px 6px 0px rgba(145, 192, 255, 0.4), 
+    inset 0px 4px 10px 0px rgb(255, 255, 255);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.square-x {
+  color: #ef4444 !important;
+  text-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+}
+
+.square-o {
+  color: #10b981 !important;
+  text-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+}
+
+.square:hover {
+  background: #f8fafc;
+  transform: translateY(-2px);
+  box-shadow: 
+    8px 8px 18px 0px rgba(145, 192, 255, 0.55), 
+    inset -3px -3px 6px 0px rgba(145, 192, 255, 0.4), 
+    inset 0px 4px 10px 0px rgb(255, 255, 255);
+}
+
+.square:active {
+  transform: translateY(1px);
+  box-shadow: 
+    inset -4px -4px 8px 0px rgba(255, 255, 255, 0.8), 
+    inset 4px 4px 10px 0px rgba(145, 192, 255, 0.6);
+}
+
+.square.winning {
+  background: #3b82f6;
+  color: #ffffff !important;
+  box-shadow: 
+    8px 8px 18px 0px rgba(59, 130, 246, 0.4), 
+    inset -4px -4px 8px 0px rgba(29, 78, 216, 0.6), 
+    inset 0px 4px 10px 0px rgba(255, 255, 255, 0.6);
+}
+
+.center-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.ties-info {
+  font-size: 0.85rem;
+  color: #3b82f6;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.ties-info strong {
+  color: #1e3a8a;
+}
+
+/* Tombol Reset */
+.btn.reset {
+  background: #3b82f6;
+  color: #ffffff;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 18px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 
+    10px 10px 20px 0px rgba(59, 130, 246, 0.4), 
+    inset -4px -4px 8px 0px rgba(29, 78, 216, 0.6), 
+    inset 0px 6px 14px 0px rgba(255, 255, 255, 0.6);
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.btn.reset:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 
+    12px 12px 25px 0px rgba(37, 99, 235, 0.5), 
+    inset -4px -4px 8px 0px rgba(30, 64, 175, 0.6), 
+    inset 0px 6px 14px 0px rgba(255, 255, 255, 0.6);
+}
+
+.btn.reset:active {
+  transform: translateY(1px);
+  box-shadow: 
+    inset -4px -4px 8px 0px rgba(255, 255, 255, 0.4), 
+    inset 4px 4px 8px 0px rgba(30, 64, 175, 0.6);
 }
