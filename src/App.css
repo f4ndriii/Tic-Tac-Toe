@@ -287,3 +287,19 @@ body {
     inset -4px -4px 8px 0px rgba(255, 255, 255, 0.4), 
     inset 4px 4px 8px 0px rgba(30, 64, 175, 0.6);
 }
+
+.player-name-text {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1e3a8a;
+  text-align: center;
+  word-break: break-word;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.player-card.active .player-name-text {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.2);
+}

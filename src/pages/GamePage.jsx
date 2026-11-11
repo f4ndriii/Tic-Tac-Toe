@@ -6,12 +6,10 @@ export default function GamePage() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Ambil nama pemain dari state routing (fallback jika di-refresh langsung)
-  const initialPlayerX = location.state?.playerX || 'Pemain X';
-  const initialPlayerO = location.state?.playerO || 'Pemain O';
+  // Ambil nama pemain dari state routing (default jika di-refresh langsung)
+  const playerX = location.state?.playerX || 'Pemain X';
+  const playerO = location.state?.playerO || 'Pemain O';
 
-  const [playerX, setPlayerX] = useState(initialPlayerX);
-  const [playerO, setPlayerO] = useState(initialPlayerO);
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
   const [scores, setScores] = useState({ X: 0, O: 0, ties: 0 });
@@ -70,15 +68,10 @@ export default function GamePage() {
       <h1 className="game-title">Tic-Tac-Toe</h1>
 
       <div className="game-main">
-        {/* Card X */}
+        {/* Card X - Nama Pemain Read-Only */}
         <div className={`player-card ${xIsNext && !winner && !isDraw ? 'active' : ''}`}>
           <span className="player-symbol x">X</span>
-          <input
-            type="text"
-            className="player-name-input"
-            value={playerX}
-            onChange={(e) => setPlayerX(e.target.value)}
-          />
+          <span className="player-name-text">{playerX}</span>
           <div className="player-score">Skor: <strong>{scores.X}</strong></div>
         </div>
 
@@ -89,21 +82,20 @@ export default function GamePage() {
           <div className="center-footer">
             <div className="ties-info">Seri: <strong>{scores.ties}</strong></div>
             <button className="btn reset" onClick={resetGame}>Ronde Baru</button>
-            <button className="btn reset" style={{ background: '#64748b', marginTop: '4px' }} onClick={() => navigate('/')}>
+            <button 
+              className="btn reset" 
+              style={{ background: '#64748b', marginTop: '4px' }} 
+              onClick={() => navigate('/')}
+            >
               Keluar
             </button>
           </div>
         </div>
 
-        {/* Card O */}
+        {/* Card O - Nama Pemain Read-Only */}
         <div className={`player-card ${!xIsNext && !winner && !isDraw ? 'active' : ''}`}>
           <span className="player-symbol o">O</span>
-          <input
-            type="text"
-            className="player-name-input"
-            value={playerO}
-            onChange={(e) => setPlayerO(e.target.value)}
-          />
+          <span className="player-name-text">{playerO}</span>
           <div className="player-score">Skor: <strong>{scores.O}</strong></div>
         </div>
       </div>
